@@ -25,7 +25,7 @@ export default function ContactLensDetail({ product }) {
 
   useEffect(() => {
     fetchProducts({ category: "contact-lenses", limit: 5 })
-      .then((data) => setRelated(data.items.filter((p) => p._id !== product._id).slice(0, 4)))
+      .then((data) => setRelated((data.items || []).filter((p) => p._id !== product._id).slice(0, 4)))
       .catch((err) => console.error("Failed to load related products:", err));
   }, [product._id]);
 
@@ -80,7 +80,7 @@ export default function ContactLensDetail({ product }) {
                 className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
               >
                 <option value="">--</option>
-                {product.colorSwatches.map((c, i) => (
+                {product.colorSwatches?.map((c, i) => (
                   <option key={c} value={c}>
                     Shade {i + 1}
                   </option>

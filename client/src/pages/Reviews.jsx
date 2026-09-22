@@ -13,7 +13,7 @@ export default function Reviews() {
 
   useEffect(() => {
     fetchReviews({ limit: 20 })
-      .then((data) => setReviews(data.items))
+      .then((data) => setReviews(data.items || []))
       .catch((err) => console.error("Failed to load reviews:", err))
       .finally(() => setLoading(false));
   }, []);

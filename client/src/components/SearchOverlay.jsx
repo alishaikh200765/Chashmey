@@ -35,7 +35,7 @@ export default function SearchOverlay({ onClose }) {
     setLoading(true);
     const t = setTimeout(() => {
       fetchProducts({ search: query.trim(), limit: 8 })
-        .then((data) => setResults(data.items))
+        .then((data) => setResults(data.items || []))
         .catch((err) => console.error("Search failed:", err))
         .finally(() => setLoading(false));
     }, 300);

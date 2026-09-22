@@ -55,9 +55,9 @@ export default function Shop() {
     fetchProducts({ ...query, page, limit: LIMIT })
       .then((data) => {
         if (ignore) return;
-        setProducts(data.items);
-        setTotal(data.total);
-        setTotalPages(data.totalPages);
+        setProducts(data.items || []);
+        setTotal(data.total || 0);
+        setTotalPages(data.totalPages || 1);
       })
       .catch((err) => console.error("Failed to load shop products:", err))
       .finally(() => !ignore && setLoading(false));
