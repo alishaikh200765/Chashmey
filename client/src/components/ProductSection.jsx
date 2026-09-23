@@ -10,7 +10,7 @@ export default function ProductSection({ title, tagline, subCategory, ctaLabel, 
     let ignore = false;
     setLoading(true);
     fetchProducts({ subCategory, limit, sort: "latest" })
-      .then((data) => !ignore && setProducts(data.items || []))
+      .then((data) => !ignore && setProducts(data.items))
       .catch((err) => console.error(`Failed to load ${subCategory}:`, err))
       .finally(() => !ignore && setLoading(false));
     return () => {
