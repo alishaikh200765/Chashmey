@@ -198,7 +198,7 @@ export default function ProductDetail() {
                 Color: <span className="font-normal text-gray-600">{product.color}</span>
               </p>
               <div className="flex gap-2">
-                {product.colorSwatches.map((c) => (
+                {product.colorSwatches?.map((c) => (
                   <button
                     key={c}
                     onClick={() => setSelectedColor(c)}

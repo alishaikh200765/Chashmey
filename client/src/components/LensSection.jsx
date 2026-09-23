@@ -9,7 +9,7 @@ export default function LensSection() {
   useEffect(() => {
     let ignore = false;
     fetchProducts({ category: "contact-lenses", limit: 8, sort: "latest" })
-      .then((data) => !ignore && setProducts(data.items))
+      .then((data) => !ignore && setProducts(data.items || []))
       .catch((err) => console.error("Failed to load contact lenses:", err))
       .finally(() => !ignore && setLoading(false));
     return () => {
