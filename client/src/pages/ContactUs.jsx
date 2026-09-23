@@ -7,7 +7,7 @@ import { sendContactMessage } from "../api/contact.js";
 
 export default function ContactUs() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
-  const [status, setStatus] = useState("idle"); 
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
 
   const handleChange = (field) => (e) => setForm({ ...form, [field]: e.target.value });
 

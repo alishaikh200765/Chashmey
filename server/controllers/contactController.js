@@ -1,5 +1,6 @@
 const ContactMessage = require("../models/ContactMessage");
 
+// POST /api/contact
 exports.createContactMessage = async (req, res) => {
   try {
     const { name, email, phone, message } = req.body;

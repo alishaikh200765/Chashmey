@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { placeholderImage } from "../utils/placeholderImage.js";
 
 export default function BrandRow({ brands = [] }) {
   return (
@@ -14,10 +13,6 @@ export default function BrandRow({ brands = [] }) {
               <img
                 src={brand.image}
                 alt={brand.name}
-                onError={(e) => {
-                  e.currentTarget.onerror = null;
-                  e.currentTarget.src = placeholderImage(brand.name, { width: 160, height: 160 });
-                }}
                 className="w-20 h-20 rounded-full object-cover border border-gray-200"
               />
               <span className="text-sm text-gray-800">{brand.name}</span>

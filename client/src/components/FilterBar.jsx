@@ -10,7 +10,7 @@ export default function FilterBar({ total = 0, rangeStart = 1, rangeEnd = 18, so
         {filters.map((f) => (
           <button
             key={f}
-            className="flex items-center gap-1 text-sm text-gray-700 hover:text-brand-red"
+            className="flex items-center gap-1 text-sm text-gray-700 hover:text-brand-primary"
           >
             {f}
             <FiChevronDown className="text-xs" />

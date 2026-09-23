@@ -104,7 +104,6 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* Nav triggers only — the menu panel itself renders once, below */}
           <nav className="hidden md:flex items-center gap-7 text-[15px] font-medium text-gray-800">
             {navData.map((item) => (
               <a
@@ -150,8 +149,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Single mega-menu instance, centered under the whole header and
-            width-capped — never overflows past the viewport edge. */}
+
         {activeItem && (
           <div className="absolute left-1/2 -translate-x-1/2 top-full w-max max-w-[90vw]">
             <MegaMenu shop={activeItem.shop} featured={activeItem.featured} />

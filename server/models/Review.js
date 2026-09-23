@@ -6,8 +6,8 @@ const reviewSchema = new mongoose.Schema(
     rating: { type: Number, min: 1, max: 5, required: true },
     title: { type: String, required: true },
     body: { type: String, required: true },
-    image: { type: String },              
-    productName: { type: String },        
+    image: { type: String },              // optional photo attached to the review
+    productName: { type: String },        // e.g. "Ray Ban Wayfarer (Black)"
     size: { type: String },
     reviewedAt: { type: Date, default: Date.now },
   },

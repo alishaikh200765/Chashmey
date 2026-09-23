@@ -1,5 +1,6 @@
 const Product = require("../models/Product");
 
+// GET /api/products?subCategory=premium-sunglasses&gender=&price=&material=&shape=&rim=&size=&color=&sort=latest&page=1&limit=18
 exports.getProducts = async (req, res) => {
   try {
     const {
@@ -70,6 +71,7 @@ exports.getProducts = async (req, res) => {
   }
 };
 
+// GET /api/products/brands  -> distinct brand list, used for "Shop by sunglasses brands"
 exports.getBrands = async (req, res) => {
   try {
     const brands = await Product.distinct("brand");
@@ -79,6 +81,7 @@ exports.getBrands = async (req, res) => {
   }
 };
 
+// GET /api/products/:id
 exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);

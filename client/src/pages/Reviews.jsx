@@ -5,6 +5,8 @@ import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import { fetchReviews } from "../api/reviews.js";
 
+// Headline "Reviews (12800)" is a marketing stat (same 12K+ figure used
+// sitewide), independent of how many individual review cards are loaded.
 const HEADLINE_COUNT = 12800;
 
 export default function Reviews() {
@@ -13,7 +15,7 @@ export default function Reviews() {
 
   useEffect(() => {
     fetchReviews({ limit: 20 })
-      .then((data) => setReviews(data.items || []))
+      .then((data) => setReviews(data.items))
       .catch((err) => console.error("Failed to load reviews:", err))
       .finally(() => setLoading(false));
   }, []);

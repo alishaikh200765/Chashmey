@@ -3,51 +3,51 @@ const connectDB = require("./config/db");
 const Product = require("./models/Product");
 const Review = require("./models/Review");
 
-// Custom provided image URLs
+// Local, background-removed images — downloaded via download-images.js and
+// processed via remove-backgrounds.py into client/public/images/. Served by
+// Vite at /images/... — no more dependency on ainak.pk's live site.
 const glassesUrls = [
-  "https://img.magnific.com/free-photo/eyeglasses-wear_1203-2605.jpg?semt=ais_hybrid&w=740&q=80",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxjjMSrpoA6JejSNG8MmJGBhPHfsV2vNfGaqfKeTfuvA&s=10",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwPoRXoGXXi04-izMRs6NzDjQgPztZuVf1A1nZ2hvoGw&s=10",
-  "https://ainak.pk/wp-content/uploads/2025/01/louis-vuitton-z1505e-bla-3.webp",
-  "https://ainak.pk/wp-content/uploads/2024/10/ray-ban-3447-golden-brown-3.webp",
-  "https://ainak.pk/wp-content/uploads/2026/07/rayban-aviator-black-large-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/11/balenciaga-bb0325o-black-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/11/gucci-gg18650-grey-3.webp",
-  "https://ainak.pk/wp-content/uploads/2026/04/fame-3234-grey-3.webp",
-  "https://ainak.pk/wp-content/uploads/2026/02/ray-ban-r921-black-3.webp",
-  "https://ainak.pk/wp-content/uploads/2024/12/louis-vuitton-z1910e-3.webp",
-  "https://ainak.pk/wp-content/uploads/2024/10/montblanc-mb0278s-black-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/10/ray-ban-aviator-golden-neww-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/10/gucci-gg0001s-tortoise-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/12/ray-ban-rb3635-gold-brown-3-1.webp",
-  "https://ainak.pk/wp-content/uploads/2026/01/rb4343-black-3-new.webp",
-  "https://ainak.pk/wp-content/uploads/2026/10/cartier-ct03601o-golden-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/12/cartier-ct03108o-grey-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/10/cartier-ct03362o-new-black-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/12/cartier-ct03162o-golden-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/12/cartier-ct00510-black-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/12/cartier-8200962-gold-3.webp",
-  "https://ainak.pk/wp-content/uploads/2026/07/mont-blanc-mb0319s-grey-3.webp",
-  "https://ainak.pk/wp-content/uploads/2026/06/ray-ban-rb2168-golden-black-3.webp",
-  "https://ainak.pk/wp-content/uploads/2024/08/ray-ban-wayfarer-3.webp",
-  "https://ainak.pk/wp-content/uploads/2026/06/ray-ban-rb4228-matte-black-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/08/ray-ban-rb5630-golden-yellow-3.webp",
-  "https://ainak.pk/wp-content/uploads/2026/06/ray-ban-rb4364-black-brown-3.webp",
-  "https://ainak.pk/wp-content/uploads/2026/06/ray-ban-rb4741-black-3.webp",
-  "https://ainak.pk/wp-content/uploads/2026/06/ray-ban-rb4734-matte-black-3.webp",
-  "https://ainak.pk/wp-content/uploads/2026/06/ray-ban-rb5607-black-3.webp",
-  "https://ainak.pk/wp-content/uploads/2025/08/ray-ban-wayfarer-brown-tortoise-new-3.webp"
+  "/images/eyeglasses-wear_1203-2605.png",
+  "/images/louis-vuitton-z1505e-bla-3.png",
+  "/images/ray-ban-3447-golden-brown-3.png",
+  "/images/rayban-aviator-black-large-3.png",
+  "/images/balenciaga-bb0325o-black-3.png",
+  "/images/gucci-gg18650-grey-3.png",
+  "/images/fame-3234-grey-3.png",
+  "/images/ray-ban-r921-black-3.png",
+  "/images/louis-vuitton-z1910e-3.png",
+  "/images/montblanc-mb0278s-black-3.png",
+  "/images/ray-ban-aviator-golden-neww-3.png",
+  "/images/gucci-gg0001s-tortoise-3.png",
+  "/images/ray-ban-rb3635-gold-brown-3-1.png",
+  "/images/rb4343-black-3-new.png",
+  "/images/cartier-ct03601o-golden-3.png",
+  "/images/cartier-ct03108o-grey-3.png",
+  "/images/cartier-ct03362o-new-black-3.png",
+  "/images/cartier-ct03162o-golden-3.png",
+  "/images/cartier-ct00510-black-3.png",
+  "/images/cartier-8200962-gold-3.png",
+  "/images/mont-blanc-mb0319s-grey-3.png",
+  "/images/ray-ban-rb2168-golden-black-3.png",
+  "/images/ray-ban-wayfarer-3.png",
+  "/images/ray-ban-rb4228-matte-black-3.png",
+  "/images/ray-ban-rb5630-golden-yellow-3.png",
+  "/images/ray-ban-rb4364-black-brown-3.png",
+  "/images/ray-ban-rb4741-black-3.png",
+  "/images/ray-ban-rb4734-matte-black-3.png",
+  "/images/ray-ban-rb5607-black-3.png",
+  "/images/ray-ban-wayfarer-brown-tortoise-new-3.png"
 ];
 
 const contactLensUrls = [
-  "https://ainak.pk/wp-content/uploads/2024/09/hydro-lens-watermark-copy-5.jpg",
-  "https://ainak.pk/wp-content/uploads/2024/09/acuvue-oasys-watermark-2.jpg",
-  "https://ainak.pk/wp-content/uploads/2024/09/flexcon-1.webp",
-  "https://ainak.pk/wp-content/uploads/2024/09/biomedics-55.jpg",
-  "https://ainak.pk/wp-content/uploads/2024/09/bella-elite-copy-2.jpg",
-  "https://ainak.pk/wp-content/uploads/2024/09/freshlook-copy-2.jpg",
-  "https://ainak.pk/wp-content/uploads/2024/09/avaira-lens-1.jpg",
-  "https://ainak.pk/wp-content/uploads/2024/09/freshkon-mosaic.jpg"
+  "/images/hydro-lens-watermark-copy-5.png",
+  "/images/acuvue-oasys-watermark-2.png",
+  "/images/flexcon-1.png",
+  "/images/biomedics-55.png",
+  "/images/bella-elite-copy-2.png",
+  "/images/freshlook-copy-2.png",
+  "/images/avaira-lens-1.png",
+  "/images/freshkon-mosaic.png"
 ];
 
 let glassesIdx = 0;

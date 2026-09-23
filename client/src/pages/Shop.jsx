@@ -10,6 +10,9 @@ import Footer from "../components/Footer.jsx";
 import { fetchProducts } from "../api/products.js";
 
 const LIMIT = 12;
+
+// Turns "blue-light-glasses" into "Blue Light Glasses" for a readable heading
+// when the caller doesn't supply an explicit title.
 const humanize = (slug) =>
   slug
     .split("-")
@@ -55,15 +58,16 @@ export default function Shop() {
     fetchProducts({ ...query, page, limit: LIMIT })
       .then((data) => {
         if (ignore) return;
-        setProducts(data.items || []);
-        setTotal(data.total || 0);
-        setTotalPages(data.totalPages || 1);
+        setProducts(data.items);
+        setTotal(data.total);
+        setTotalPages(data.totalPages);
       })
       .catch((err) => console.error("Failed to load shop products:", err))
       .finally(() => !ignore && setLoading(false));
     return () => {
       ignore = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryKey, page]);
 
   return (

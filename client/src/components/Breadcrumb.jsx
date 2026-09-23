@@ -7,7 +7,7 @@ export default function Breadcrumb({ trail = [] }) {
           {i === trail.length - 1 ? (
             <span className="text-gray-700">{item}</span>
           ) : (
-            <a href="/" className="hover:text-brand-red">
+            <a href="/" className="hover:text-brand-primary">
               {item}
             </a>
           )}

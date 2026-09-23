@@ -15,8 +15,8 @@ export default function Pagination({ page, totalPages, onPageChange }) {
           onClick={() => onPageChange(p)}
           className={`w-9 h-9 rounded-md text-sm font-medium border ${
             p === page
-              ? "bg-brand-red text-white border-brand-red"
-              : "border-gray-300 text-gray-700 hover:border-brand-red"
+              ? "bg-brand-primary text-white border-brand-primary"
+              : "border-gray-300 text-gray-700 hover:border-brand-primary"
           }`}
         >
           {p}
@@ -29,8 +29,8 @@ export default function Pagination({ page, totalPages, onPageChange }) {
           onClick={() => onPageChange(p)}
           className={`w-9 h-9 rounded-md text-sm font-medium border ${
             p === page
-              ? "bg-brand-red text-white border-brand-red"
-              : "border-gray-300 text-gray-700 hover:border-brand-red"
+              ? "bg-brand-primary text-white border-brand-primary"
+              : "border-gray-300 text-gray-700 hover:border-brand-primary"
           }`}
         >
           {p}
@@ -38,7 +38,7 @@ export default function Pagination({ page, totalPages, onPageChange }) {
       ))}
       <button
         onClick={() => onPageChange(Math.min(totalPages, page + 1))}
-        className="w-9 h-9 rounded-md border border-gray-300 flex items-center justify-center hover:border-brand-red"
+        className="w-9 h-9 rounded-md border border-gray-300 flex items-center justify-center hover:border-brand-primary"
         aria-label="Next page"
       >
         →

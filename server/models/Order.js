@@ -8,7 +8,7 @@ const orderItemSchema = new mongoose.Schema(
     qty: Number,
     color: String,
     size: String,
-    lensSummary: String, 
+    lensSummary: String, // human-readable summary of any attached prescription
   },
   { _id: false }
 );

@@ -40,7 +40,7 @@ export default function LensSelection() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const [method, setMethod] = useState("prescription"); 
+  const [method, setMethod] = useState("prescription"); // "prescription" | "image" | "written"
   const [od, setOd] = useState(emptyEye);
   const [os, setOs] = useState(emptyEye);
   const [twoPd, setTwoPd] = useState(false);
@@ -136,7 +136,7 @@ export default function LensSelection() {
             <FiChevronLeft /> Back
           </button>
 
-        
+          {/* Method: Prescription */}
           <div className="border border-gray-200 rounded-md mb-3">
             <button
               onClick={() => setMethod("prescription")}
@@ -258,6 +258,7 @@ export default function LensSelection() {
             )}
           </div>
 
+          {/* Method: Upload image */}
           <div className="border border-gray-200 rounded-md mb-3">
             <button
               onClick={() => setMethod("image")}
@@ -286,6 +287,7 @@ export default function LensSelection() {
             )}
           </div>
 
+          {/* Method: Write eyesight number */}
           <div className="border border-gray-200 rounded-md mb-6">
             <button
               onClick={() => setMethod("written")}

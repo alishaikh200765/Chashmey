@@ -21,15 +21,25 @@ function App() {
     <>
       <ScrollToTop />
       <Routes>
+      {/* Real homepage: hero carousel, mega-menu nav, shop-by-category, product
+          sections, contact lenses, accordions/FAQ. */}
       <Route path="/" element={<Home />} />
+      {/* Premium Sunglasses category/listing page (filters + full grid + pagination). */}
       <Route path="/premium-sunglasses" element={<PremiumSunglasses />} />
+      {/* Generic filtered listing — every other navbar link (category/brand/gender/etc.) routes here. */}
       <Route path="/shop" element={<Shop />} />
+      {/* Single product page: gallery, description/details tabs, buy panel. */}
       <Route path="/product/:id" element={<ProductDetail />} />
+      {/* Prescription / lens selection flow, reached from "SELECT LENSES" or the cart. */}
       <Route path="/lens-selection/:id" element={<LensSelection />} />
+      {/* Cart page: real items from CartContext, or the empty-state message. */}
       <Route path="/cart" element={<Cart />} />
+      {/* Checkout: delivery details, payment method, places a real order. */}
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/order-confirmation/:id" element={<OrderConfirmation />} />
+      {/* Customer reviews list. */}
       <Route path="/reviews" element={<Reviews />} />
+      {/* Static/info pages */}
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/faqs" element={<FAQ />} />

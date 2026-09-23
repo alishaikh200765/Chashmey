@@ -1,5 +1,6 @@
 const Order = require("../models/Order");
 
+// POST /api/orders
 exports.createOrder = async (req, res) => {
   try {
     const { items, customer, paymentMethod, subtotal, discount, total } = req.body;
@@ -26,6 +27,7 @@ exports.createOrder = async (req, res) => {
   }
 };
 
+// GET /api/orders/:id
 exports.getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);

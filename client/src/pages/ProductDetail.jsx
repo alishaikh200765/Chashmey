@@ -7,6 +7,8 @@ import Footer from "../components/Footer.jsx";
 import { fetchProductById } from "../api/products.js";
 import { useCart } from "../context/CartContext.jsx";
 import ContactLensDetail from "../components/ContactLensDetail.jsx";
+import TryOnModal from "../components/TryOnModal.jsx";
+import { glassesOverlayImage } from "../utils/placeholderImage.js";
 
 const badgeStyles = {
   New: "bg-brand-green text-white",
@@ -24,6 +26,7 @@ export default function ProductDetail() {
   const [tab, setTab] = useState("details");
   const [selectedColor, setSelectedColor] = useState(null);
   const [added, setAdded] = useState(false);
+  const [tryOnOpen, setTryOnOpen] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -87,6 +90,15 @@ export default function ProductDetail() {
         <div>
           <div className="bg-gray-50 rounded-lg aspect-[4/3] flex items-center justify-center">
             <img src={product.image} alt={product.name} className="max-h-full object-contain p-8" />
+          </div>
+
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={() => setTryOnOpen(true)}
+              className="bg-brand-primary text-white text-sm font-semibold px-5 py-2.5 rounded-md"
+            >
+              Try on
+            </button>
           </div>
 
           <p className="text-sm font-medium text-gray-700 mt-6 flex items-center gap-2">
@@ -198,7 +210,7 @@ export default function ProductDetail() {
                 Color: <span className="font-normal text-gray-600">{product.color}</span>
               </p>
               <div className="flex gap-2">
-                {product.colorSwatches?.map((c) => (
+                {product.colorSwatches.map((c) => (
                   <button
                     key={c}
                     onClick={() => setSelectedColor(c)}
@@ -246,6 +258,15 @@ export default function ProductDetail() {
       </div>
 
       <Footer />
+
+      {tryOnOpen && (
+        <TryOnModal
+          productName={product.name}
+          glassesImage={product.image}
+          fallbackImage={glassesOverlayImage(product.name, { color: selectedColor })}
+          onClose={() => setTryOnOpen(false)}
+        />
+      )}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 const Review = require("../models/Review");
 
+// GET /api/reviews?page=1&limit=10
 exports.getReviews = async (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query;

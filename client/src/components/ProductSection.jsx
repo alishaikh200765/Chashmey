@@ -10,7 +10,7 @@ export default function ProductSection({ title, tagline, subCategory, ctaLabel, 
     let ignore = false;
     setLoading(true);
     fetchProducts({ subCategory, limit, sort: "latest" })
-      .then((data) => !ignore && setProducts(data.items || []))
+      .then((data) => !ignore && setProducts(data.items))
       .catch((err) => console.error(`Failed to load ${subCategory}:`, err))
       .finally(() => !ignore && setLoading(false));
     return () => {
@@ -22,7 +22,7 @@ export default function ProductSection({ title, tagline, subCategory, ctaLabel, 
     <section className="mt-14">
       {ctaLabel && (
         <div className="flex justify-center mb-6">
-          <button className="bg-brand-red text-white font-semibold px-6 py-3 rounded-md">
+          <button className="bg-brand-primary text-white font-semibold px-6 py-3 rounded-md">
             {ctaLabel}
           </button>
         </div>
